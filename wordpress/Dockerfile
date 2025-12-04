@@ -23,6 +23,10 @@ RUN apk add --no-cache \
     php85-zip \
     php85-dom \
     php85-xmlreader \
+    php85-exif \
+    php85-fileinfo \
+    php85-pecl-imagick \
+    php85-intl \
     bash \
     curl \
     ca-certificates \
