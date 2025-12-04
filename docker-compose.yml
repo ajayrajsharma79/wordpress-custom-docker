@@ -1,0 +1,39 @@
+# Use only for development and testing purposes, not for production deployments.
+# This docker-compose file sets up a WordPress development environment
+# with MariaDB as the database and phpMyAdmin for database management.
+
+services:
+  mariadb:
+    build: ./mariadb
+    container_name: mariadb
+    volumes:
+      - ./mariadb_data:/var/lib/mysql
+    env_file:
+      - .env
+    ports:
+      - "3306:3306"
+    restart: always
+
+  wordpress:
+    build: ./wordpress
+    container_name: wordpress
+    depends_on:
+      - mariadb
+    volumes:
+      - ./wordpress_data:/var/www/html
+    env_file:
+      - .env
+    ports:
+      - "8080:80"
+    restart: always
+
+  phpmyadmin:
+    build: ./phpmyadmin
+    container_name: phpmyadmin
+    depends_on:
+      - mariadb
+    env_file:
+      - .env
+    ports:
+      - "8081:80"
+    restart: always
