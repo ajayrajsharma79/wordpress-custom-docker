@@ -13,8 +13,8 @@ This project provides a complete local development environment for WordPress usi
 
 ## Prerequisites
 
-- Docker
-- Docker Compose
+- Docker or Podman
+- Docker Compose or Podman Compose
 
 ## Getting Started
 
@@ -32,9 +32,20 @@ This project provides a complete local development environment for WordPress usi
     ```bash
     docker-compose up -d --build
     ```
+    *Or if using Podman:*
+    ```bash
+    podman-compose up -d --build
+    ```
+    - **MariaDB**: Port `3306`
 
-4.  **Access the Services**:
-    - **WordPress**: [http://localhost:8080](http://localhost:8080)
+## Podman Support
+
+This project is fully compatible with **Podman**, including **Rootless Podman**.
+
+- **Rootless Compatibility**: The configuration includes `:Z` volume flags for SELinux support and entrypoint scripts that handle permission management automatically.
+- **Usage**: Simply use `podman-compose` instead of `docker-compose`.
+
+## Directory Structurehttp://localhost:8080](http://localhost:8080)
     - **phpMyAdmin**: [http://localhost:8081](http://localhost:8081)
     - **MariaDB**: Port `3306`
 

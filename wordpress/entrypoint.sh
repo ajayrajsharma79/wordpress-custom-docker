@@ -17,5 +17,8 @@ if [ ! -f /var/www/html/wp-config.php ]; then
     sed -i "s/localhost/$WORDPRESS_DB_HOST/" /var/www/html/wp-config.php
 fi
 
+# Ensure permissions are correct
+chown -R apache:apache /var/www/html
+
 echo "Starting Apache..."
 exec httpd -D FOREGROUND

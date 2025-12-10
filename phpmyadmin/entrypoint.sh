@@ -16,5 +16,8 @@ if [ ! -f /var/www/html/config.inc.php ]; then
     sed -i "s|\$cfg\['blowfish_secret'\] = '';|\$cfg['blowfish_secret'] = '$SECRET';|" /var/www/html/config.inc.php
 fi
 
+# Ensure permissions are correct
+chown -R apache:apache /var/www/html
+
 echo "Starting Apache..."
 exec httpd -D FOREGROUND

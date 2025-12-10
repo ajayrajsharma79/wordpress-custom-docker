@@ -7,7 +7,7 @@ services:
     build: ./mariadb
     container_name: mariadb
     volumes:
-      - ./mariadb_data:/var/lib/mysql
+      - ./mariadb_data:/var/lib/mysql:Z
     env_file:
       - .env
     ports:
@@ -20,7 +20,7 @@ services:
     depends_on:
       - mariadb
     volumes:
-      - ./wordpress_data:/var/www/html
+      - ./wordpress_data:/var/www/html:Z
     env_file:
       - .env
     ports:
@@ -37,3 +37,10 @@ services:
     ports:
       - "8081:80"
     restart: always
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.1.0/24

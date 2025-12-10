@@ -30,5 +30,8 @@ EOSQL
     wait "$pid"
 fi
 
+# Ensure permissions are correct for the data directory
+chown -R mysql:mysql /var/lib/mysql
+
 echo "Starting MariaDB..."
 exec mariadbd --bind-address=0.0.0.0 --user=mysql
